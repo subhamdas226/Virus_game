@@ -1,5 +1,5 @@
 const start = document.querySelector('.play');  
-var scoreBoard = document.querySelector('.score span');
+const scoreBoard = document.querySelector('.score span');
 const arr_virus = [".virus1", ".virus2", ".virus3", ".virus4", ".virus5"];
 const timer = document.querySelector('.timer');
 
