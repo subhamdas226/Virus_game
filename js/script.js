@@ -1,28 +1,30 @@
-      const start = document.querySelector('.play');  
-      var scoreBoard = document.querySelector('.score span');
-      const arr_virus = [".virus1", ".virus2", ".virus3", ".virus4", ".virus5"];
-      const timer = document.querySelector('.timer');
+const start = document.querySelector('.play');  
+var scoreBoard = document.querySelector('.score span');
+const arr_virus = [".virus1", ".virus2", ".virus3", ".virus4", ".virus5"];
+const timer = document.querySelector('.timer');
 
 let playTime = 0;
 let interval, lastIndex;
 let score = 0;
 
-
+//...........StartGame..........................................
 function startGame() {
   playTime = 10;
   var scoreBoard = document.querySelector('.score span');
   scoreBoard.textContent = 0;
   score = 0;
 
-  clearInterval(interval);
+  clearInterval(interval); //stop the timer when playtime less than 0
   countdown();
   showVirus();
 }
 
+//.............Display virus.....................................
 function showVirus() {
   var virus = document.querySelector(randomVirus(arr_virus));
       time = randomTime(500, 1000);
 
+  //get the height and width and display across browser
   var fullWidth = document.body.clientWidth - 100;
   var fullHeight =document.body.clientHeight - 100;
   virus.style.position = "relative";
@@ -31,9 +33,9 @@ function showVirus() {
     document.body.appendChild(virus);
 
   virus.style.display = 'block'
-  
+
+  //How long virus will be shown and popup 
   setTimeout(() => {
-    
     virus.style.display = 'none'
     if (playTime > 0) {
       showVirus();
@@ -46,73 +48,70 @@ function scoreCorona() {
   var v1 = document.querySelector('.virus1');
   score = score + 50;
   scoreBoard.textContent = score;
-  v1.style.display = 'none';
-  
+  v1.style.display = 'none';  
 }
+
 function scoreSars() { 
   var scoreBoard = document.querySelector('.score span');
   var v2 = document.querySelector('.virus2');
   score = score + 30 ;
   scoreBoard.textContent = score;
-  v2.style.display = 'none';
-  
+  v2.style.display = 'none';  
 }
+
 function scoreFlu() {
   var scoreBoard = document.querySelector('.score span');
   var v3 = document.querySelector('.virus3');
   score = score + 10;
   scoreBoard.textContent = score;
-  v3.style.display = 'none';
-  
+  v3.style.display = 'none';  
 }
+
 function scoreGoodVirus() {
   var scoreBoard = document.querySelector('.score span');
   var v4 = document.querySelector('.virus4');
   score = score - 30;
   scoreBoard.textContent = score;
   v4.style.display = 'none';
-  
 }
+
 function timeStar() {
   var timer = document.querySelector('.timer');
   var v5 = document.querySelector('.virus5');
   playTime = playTime + 3;
   timer.textContent = playTime;
-  v5.style.display = 'none';
-  
+  v5.style.display = 'none';  
 } 
+
+//..............Timer...........................................
 function countdown() {
   const timer = document.querySelector('.timer');
-
   interval = setInterval(() => {
     if (playTime < 0) {
       clearInterval(interval);
       return;
     }
-    
     timer.textContent = playTime;
     playTime--;
   }, 1000);
 }
 
+//........get the random time to pop up the virus..................
 function randomTime(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+//........get the random virus to display on screen................
 function randomVirus(arr_virus) {
-
-  
   let idx = Math.floor(Math.random() * arr_virus.length);
   virus = arr_virus[idx];
   if (idx === lastIndex) {
-    console.log("Nah thats the same one bud");
+    console.log("Nah thats the same one buddy");
     return randomVirus(arr_virus);
   }
   lastIndex = idx;
   return virus;
-  //return arr_virus[Math.floor(Math.random() * arr_virus.length ) ];151
+  //return arr_virus[Math.floor(Math.random() * arr_virus.length ) ];
 }
 
-//start.addEventListener('click', startGame);
-//virus.forEach(virus =>virus.addEventListener('click', scorePoint));
   
