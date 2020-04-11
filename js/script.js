@@ -89,6 +89,7 @@ function countdown() {
   interval = setInterval(() => {
     if (playTime < 0) {
       clearInterval(interval);
+      alert("your score is : "+ score)
       return;
     }
     timer.textContent = playTime;
